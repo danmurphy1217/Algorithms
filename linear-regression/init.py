@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from metrics.rmse import rmse
+from metrics.mae import mae
 """
 Implementation of Linear Regression
 
@@ -12,9 +13,8 @@ y = b0 + b1*x
 
 # Generate Mock Data
 np.random.seed(42)
-x = np.arange(2500)
-delta = np.random.uniform(-10, 10, size = (2500, ))
-y = .4*x + delta + 3
+x = np.random.rand(100, 1)
+y = 3*x + np.random.rand(100, 1)
 
 
 # Generate Estimates
@@ -52,8 +52,11 @@ def coef_estimator(x, y):
 
 if __name__ == "__main__":
     x_bar, y_bar = mean(x), mean(y)
-    var_x = variance(x, x_bar)
-    stdev_x = stdev(x, x_bar)
     b_naught, b_1 = coef_estimator(x, y)
     preds = [(b_naught + b_1*x[i]) for i in range(len(x))]
-    print(rmse(preds, y))
+    print(rmse(preds, actual = y))
+    print(mae(preds, y))
+    plt.plot(x, preds)
+    plt.plot(x, y, linestyle="none", marker=".")
+    plt.show()
+
