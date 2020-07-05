@@ -19,7 +19,7 @@ def selectionSort(arr):
     """
     returns the sorted array. Uses findSmallestIndex() at each iteration
     to determine the next smallest index value to pop from the array and
-    append to the sorted array.
+    append to the sorted array. O(n^2) time complexity
 	@params: arr, an array to sort
 	@returns: sorted arr
     """
